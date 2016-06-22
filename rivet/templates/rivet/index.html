@@ -1,0 +1,26 @@
+<h1>this is rivet</h1>
+
+{% if error_message %} <p><strong>{{ error_message }}</strong></p> {% endif %}
+
+<form action="{% url 'submit' %}" method="post">
+    {% csrf_token %}
+    <label for="doc_a">Document A</label>
+    <input type="text" name="doca" id="doc_a"/>
+    <label for="doc_b">Document B</label>
+    <input type="text" name="docb" id="doc_b"/>
+    <input type="submit" value="Submit"/>
+</form>
+
+{% if latest_comparisons %}
+    <ul>
+        {% for comparison in latest_comparisons %}
+            <li>
+                <a href="{% url 'comparison' comparison.id %}">
+                    {{ comparison.str }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No comparisons available.</p>
+{% endif %}

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rivet.apps.RivetConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
