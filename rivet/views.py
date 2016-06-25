@@ -24,8 +24,8 @@ def index(request):
 
 def submit(request):
     try:
-        print(request.POST.keys())
         document_a, document_b = sorted((request.POST['doca'], request.POST['docb']))
+        do_deep = 'deep' in request.POST
     except KeyError:
         latest_comparisons = get_latest_comparisons()
         return render(request, 'rivet/index.html', {
@@ -37,7 +37,11 @@ def submit(request):
             cmp = Comparison.objects.get(document_a=document_a, document_b=document_b)
         except Comparison.DoesNotExist:
             print("Comparing documents: ")
-            result = rivet.compare_documents(document_a, document_b)
+            if do_deep:
+                with Lexicon.open(size=1000, nnz=8) as lex:
+                    result = rivet.compare_documents(document_a, document_b, lexicon=lex, ingest=True)
+            else:
+                result = rivet.compare_documents(document_a, document_b)
             result = result[0][1]
             cmp = Comparison(document_a=document_a, document_b=document_b, result=result)
             cmp.save()
@@ -47,9 +51,9 @@ def submit(request):
 def comparison(request, comparison_id):
     c = get_object_or_404(Comparison, pk=comparison_id)
     r = c.result
-    r -= 0.5
-    r *= 2
-    r = round(r, 2)
+    r -= 0.55
+    r *= 2.2
+    r = int(r * 100)
     return render(request, 'rivet/comparison.html', {'comparison': c, 'result': r})
 
 

@@ -11,11 +11,13 @@
 <form action="{% url 'submit' %}" method="post">
     {% csrf_token %}
     <div id="inputs">
-        <label for="doca">Give me two documents:</label><br/>
+        <label for="doca">Give me two documents</label><br/>
         <textarea rows="30" cols="60" name="doca" id="doca"></textarea>
         <textarea rows="30" cols="60" name="docb" id="docb"></textarea>
     </div>
     <div id="submit">
+        <input type="checkbox" name="deep" id="deep"/>
+        <label for="deep">Deep comparison? (Takes much longer, still in testing.)</label><br/>
         <input type="submit" value="Submit"/>
     </div>
 </form>
