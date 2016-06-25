@@ -1,0 +1,17 @@
+#header {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+#doca {
+    white-space: pre-wrap;
+    width: 600px;
+    float: left;
+}
+
+#docb {
+    white-space: pre-wrap;
+    width: 600px;
+    float: right;
+}

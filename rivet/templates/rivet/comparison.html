@@ -1,6 +1,16 @@
-<h1><p>Rivet thinks the chance of these two being similar is {{ comparison.result }}:</p></h1>
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'rivet/comp.css' %}"/>
+
+<div id="header"><h1><p>Rivet similarity score {{ comparison.result }}</p></h1></div>
 [<a href="{% url 'index' %}">back to index</a>]
-<h3>Document A:</h3>
-{{ comparison.document_a }}<br/><br/>
-<h3>Document B:</h3>
-{{ comparison.document_b }}
+<p>For reference, .6 is very unlikely, .8 to .9 is middling, .99 is very likely (the more 9s the better).</p>
+
+<div id="doca">
+    <h3>Document A:</h3>
+    {{ comparison.document_a }}
+</div>
+<div id="docb">
+    <h3>Document B:</h3>
+    {{ comparison.document_b }}
+</div>
