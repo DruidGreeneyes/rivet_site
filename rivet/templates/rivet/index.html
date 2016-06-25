@@ -1,26 +1,21 @@
-<h1>this is rivet</h1>
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'rivet/index.css' %}"/>
+
+<div id="header">
+    <h1>this is rivet.</h1>
+</div>
 
 {% if error_message %} <p><strong>{{ error_message }}</strong></p> {% endif %}
 
 <form action="{% url 'submit' %}" method="post">
     {% csrf_token %}
-    <label for="doc_a">Document A</label>
-    <input type="text" name="doca" id="doc_a"/>
-    <label for="doc_b">Document B</label>
-    <input type="text" name="docb" id="doc_b"/>
-    <input type="submit" value="Submit"/>
+        <div id="inputs">
+            <label for="doca">Give me two documents:</label><br/>
+            <textarea rows="30" cols="60" name="doca" id="doca"></textarea>
+            <textarea rows="30" cols="60" name="docb" id="docb"></textarea>
+        </div>
+    <div id="submit">
+        <input type="submit" value="Submit"/>
+    </div>
 </form>
-
-{% if latest_comparisons %}
-    <ul>
-        {% for comparison in latest_comparisons %}
-            <li>
-                <a href="{% url 'comparison' comparison.id %}">
-                    {{ comparison.str }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p>No comparisons available.</p>
-{% endif %}
