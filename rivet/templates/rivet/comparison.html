@@ -1,6 +1,22 @@
-{% load staticfiles %}
+<style>
+#header {
+    background-color: black;
+    color: white;
+    text-align: center;
+}
 
-<link rel="stylesheet" type="text/css" href="{% static 'rivet/comp.css' %}"/>
+#doca {
+    white-space: pre-wrap;
+    width: 600px;
+    float: left;
+}
+
+#docb {
+    white-space: pre-wrap;
+    width: 600px;
+    float: right;
+}
+</style>
 
 <div id="header"><h1><p>Rivet similarity score: {{ result }}</p></h1></div>
 [<a href="{% url 'index' %}">back to index</a>]
