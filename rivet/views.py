@@ -46,7 +46,11 @@ def submit(request):
 
 def comparison(request, comparison_id):
     c = get_object_or_404(Comparison, pk=comparison_id)
-    return render(request, 'rivet/comparison.html', {'comparison': c})
+    r = c.result
+    r -= 0.6
+    r *= 2
+    r = round(r, 2)
+    return render(request, 'rivet/comparison.html', {'comparison': c, 'result': r})
 
 
 

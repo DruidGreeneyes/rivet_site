@@ -2,9 +2,9 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'rivet/comp.css' %}"/>
 
-<div id="header"><h1><p>Rivet similarity score {{ comparison.result }}</p></h1></div>
+<div id="header"><h1><p>Rivet similarity score: {{ result }}</p></h1></div>
 [<a href="{% url 'index' %}">back to index</a>]
-<p>For reference, .6 is very unlikely, .8 to .9 is middling, .99 is very likely (the more 9s the better).</p>
+<p>Higher scores = more similar text.</p>
 
 <div id="doca">
     <h3>Document A:</h3>
